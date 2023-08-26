@@ -128,19 +128,19 @@ For Vault helm chart deployment to K8S cluster:
 make vault <start|stop>
 ```
 
-Password Rotation CronJob:
+#### Password Rotation CronJob:
 Manage the password rotation script python development and the cronjob deployment:
 ```bash
 make cronjob <pip|freeze|run|create-role|deploy>
 ```
 
-TeamCity:
+#### TeamCity:
 Manage TeamCity deployment on docker-compose:
 ```bash
 make teamcity <start|stop>
 ```
 
-Kubernetes Context:
+#### Kubernetes Context:
 Sets Kubernetes contexts (KIND or EKS):
 ```bash
 make kube-context <local|cloud>
