@@ -1,0 +1,21 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: codejam
+  region: eu-central-1
+
+vpc:
+  cidr: 10.34.0.0/16
+
+nodeGroups:
+  - name: hello-group
+    instanceType: c5.large
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 2
+    volumeSize: 100
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        cloudWatch: true

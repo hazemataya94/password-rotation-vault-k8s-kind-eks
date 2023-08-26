@@ -1,0 +1,23 @@
+# Create a Service for MySQL
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+
+# Create a ConfigMap with MySQL connection details
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  MYSQL_HOST: mysql
+  MYSQL_USER: {{ .Values.mysql.mysqlUser }}
+  MYSQL_PASSWORD: {{ .Values.mysql.mysqlPassword }}
+  MYSQL_DATABASE: {{ .Values.mysql.mysqlDatabase }}

@@ -1,0 +1,10 @@
+services:
+  app:
+    container_name: "app"
+    build:
+      dockerfile: docker/dev.Dockerfile
+      context: .
+    working_dir: "/app"
+    entrypoint: [ "/bin/bash", "-c", "make cronjob pip; sleep infinity" ]
+    volumes:
+      - ./:/app/

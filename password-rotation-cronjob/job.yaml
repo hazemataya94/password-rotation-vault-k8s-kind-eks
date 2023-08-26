@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: password-rotation
+spec:
+  template:
+    spec:
+      hostAliases:
+      - ip: "3.120.3.139"
+        hostnames:
+        - vault
+      containers:
+      - name: password-rotation
+        image: hazemataya/password-rotation
+      restartPolicy: OnFailure

@@ -1,0 +1,28 @@
+#see https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml for the all default values, or use $helm show values ingress-nginx/ingress-nginx
+
+## nginx configuration
+## Ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/index.md
+##
+
+controller:
+  ## Name of the ingress class to route through this controller
+  ##
+  ingressClass: nginx
+
+  ## Node labels for controller pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  nodeSelector:
+    kubernetes.io/os: linux
+
+  config:
+    enable-underscores-in-headers: true
+
+  replicaCount: 1
+
+  service:
+    enabled: true
+    annotations: 
+      # by default the type is elb (classic load balancer).
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      

@@ -1,0 +1,63 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: foo-app
+  labels:
+    app: http-echo
+spec:
+  containers:
+  - name: foo-app
+    image: nginx
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: bar-app
+  labels:
+    app: http-echo
+spec:
+  containers:
+  - name: bar-app
+    image: nginx
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: foo-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: http-echo
+  ports:
+  # Default port used by the image
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: foo-service
+spec:
+  type: ClusterIP  # Change to ClusterIP
+  selector:
+    app: http-echo
+  ports:
+    - port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx 
+spec:
+  rules:
+    - host: example.com  # Replace with your domain or host
+      http:
+        paths:
+          - path: /  # Path to match
+            pathType: Prefix
+            backend:
+              service:
+                name: foo-service  # Service name you want to expose
+                port:
+                  number: 80  # Port of the service
