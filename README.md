@@ -111,7 +111,7 @@ VAULT_SECRET_KEY="your_vault_secret_key_here"
 
 Now, your environment configuration is set up with the correct values for HashiCorp Vault integration. You can proceed with the project's commands as described in the previous sections.
 
-#### Cluster Setup:
+#### Cluster Setup
 - For KIND cluster setup:
 ```bash
 make kind <start|stop>
@@ -122,25 +122,25 @@ make kind <start|stop>
 make eks <start|stop>
 ```
 
-#### Vault Deployment:
+#### Vault Deployment
 For Vault helm chart deployment to K8S cluster:
 ```bash
 make vault <start|stop>
 ```
 
-#### Password Rotation CronJob:
+#### Password Rotation CronJob
 Manage the password rotation script python development and the cronjob deployment:
 ```bash
 make cronjob <pip|freeze|run|create-role|deploy>
 ```
 
-#### TeamCity:
+#### TeamCity
 Manage TeamCity deployment on docker-compose:
 ```bash
 make teamcity <start|stop>
 ```
 
-#### Kubernetes Context:
+#### Kubernetes Context
 Sets Kubernetes contexts (KIND or EKS):
 ```bash
 make kube-context <local|cloud>
